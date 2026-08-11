@@ -1,4 +1,4 @@
-neo4j==5.24.0
-streamlit==1.38.0
-python-dotenv==1.0.1
-faker==26.0.0
+neo4j>=5.24
+streamlit>=1.38
+python-dotenv>=1.0
+faker>=26.0
