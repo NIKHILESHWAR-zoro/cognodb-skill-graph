@@ -90,8 +90,6 @@ Deployed on Streamlit Community Cloud: **<TODO: paste live demo link>**
 
 ## Screenshots
 
-## Screenshots
-
 ### Person Explorer — job matches & skill-gap analysis
 ![Person Explorer](screenshots/screenshot1.png)
 
