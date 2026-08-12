@@ -15,7 +15,7 @@ if not check_connection():
     )
     st.stop()
 
-tab1, tab2, tab3 = st.tabs(["👤 Person Explorer", "🔍 Skill Explorer", "🧭 Skill Path Finder"])
+tab1, tab2, tab3, tab4 = st.tabs(["👤 Person Explorer", "🔍 Skill Explorer", "🧭 Skill Path Finder", "➕ Add Person"])
 
 # ============================== TAB 1 ====================================
 with tab1:
@@ -120,6 +120,42 @@ with tab3:
                 st.write(" → ".join(path))
             else:
                 st.warning("No path found between these skills.")
+
+# ============================== TAB 4 ====================================
+with tab4:
+    st.subheader("Add a new person to the graph")
+    st.caption("This writes directly into CognoDB - no scripts needed.")
+
+    all_skill_names = q.list_skill_names()
+
+    with st.form("add_person_form"):
+        name = st.text_input("Full name")
+        role = st.selectbox("Current role", ["Student", "Junior Developer", "Analyst", "Career Switcher"])
+        experience = st.number_input("Years of experience", min_value=0, max_value=50, value=0)
+        chosen_skills = st.multiselect("Skills", all_skill_names)
+
+        proficiencies = {}
+        if chosen_skills:
+            st.write("Set proficiency for each skill:")
+            for skill in chosen_skills:
+                proficiencies[skill] = st.select_slider(
+                    skill, options=["beginner", "intermediate", "advanced"],
+                    value="intermediate", key=f"prof_{skill}",
+                )
+
+        submitted = st.form_submit_button("Add person")
+
+        if submitted:
+            if not name.strip():
+                st.error("Please enter a name.")
+            elif not chosen_skills:
+                st.error("Please select at least one skill.")
+            else:
+                with st.spinner("Writing to CognoDB..."):
+                    skills_list = [(s, proficiencies[s]) for s in chosen_skills]
+                    person_id = q.add_new_person(name.strip(), role, int(experience), skills_list)
+                st.success(f"Added {name} to the graph! Switch to the Person Explorer tab to see their matches.")
+                st.balloons()
 
 st.divider()
 stats = q.graph_stats()[0] if q.graph_stats() else {}
