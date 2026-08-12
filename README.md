@@ -83,7 +83,16 @@ Deployed on Streamlit Community Cloud: **<TODO: paste live demo link>**
 
 ## Screenshots
 
-<!-- TODO: add screenshots of Person Explorer, Skill Explorer, Path Finder tabs -->
+## Screenshots
+
+### Person Explorer — job matches & skill-gap analysis
+![Person Explorer](screenshots/screenshot1.png)
+
+### Skill Explorer — jobs & related skills
+![Skill Explorer](screenshots/screenshot2.png)
+
+### Skill Path Finder — shortest path between skills
+![Skill Path Finder](screenshots/screenshot3.png)
 
 ## Screen recording
 
