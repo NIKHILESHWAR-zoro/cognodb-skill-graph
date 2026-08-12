@@ -34,8 +34,15 @@ relationships instead of flattening it into join tables.
 - **Company**: id, name, industry
 - **Course**: id, name, provider, duration_hours
 
-<!-- TODO: paste a simple diagram/screenshot of the model here -->
-
+```mermaid
+graph LR
+    Person -->|HAS_SKILL| Skill
+    Job -->|REQUIRES_SKILL| Skill
+    Job -->|POSTED_BY| Company
+    Skill -->|RELATED_TO| Skill
+    Course -->|TEACHES| Skill
+    Person -->|COMPLETED| Course
+```
 ## Main queries (see `queries.py`)
 
 1. **`recommended_jobs_for_person`** — direct skill-overlap matching, ranked.
