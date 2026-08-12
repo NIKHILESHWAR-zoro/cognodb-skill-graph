@@ -103,7 +103,7 @@ Deployed on Streamlit Community Cloud: **<TODO: paste live demo link>**
 
 ## Screen recording
 
-<!-- TODO: add link to short screen recording -->
+Watch here: https://drive.google.com/file/d/1cEYqpR51bxhe1HuI_PjCdCTynF_zuvQ0/view?usp=sharing
 
 ## Project structure
 
